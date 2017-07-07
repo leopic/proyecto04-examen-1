@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {
+    Button,
     Text,
     View
 } from 'react-native';
@@ -12,8 +13,8 @@ export default class CocinaScreen extends React.Component {
     };
 
     render() {
-        const { params } = this.props.navigation.state;
-        const prepararAlimentos = (mesas) => {
+        let { params } = this.props.navigation.state;
+        let prepararAlimentos = (mesas) => {
             let alimentos: any[] = [];
             mesas.forEach(mesa => {
                 mesa.orden.forEach(alimento => {
@@ -24,13 +25,18 @@ export default class CocinaScreen extends React.Component {
 
             return alimentos;
         };
-        const alimentosView = prepararAlimentos(params.mesas).map(alimento => {
+
+        let alimentosView = prepararAlimentos(params.mesas).map(alimento => {
             let key = '' + alimento.mesaKey + alimento.descripcion.replace(' ', '');
             return <View key={key}>
                     <Text>Mesa: {alimento.mesaKey}</Text>
                     <Text>Cantidad: {alimento.cantidad}</Text>
                     <Text>Descripcion: {alimento.descripcion}</Text>
-                    <Text>----</Text>
+                    <Button title="REMOVER" onPress={() => {
+                        params.removerAlimentoDeMesa(alimento, alimento.mesaKey);
+                        this.forceUpdate();
+                    }}/>
+                <Text>----</Text>
                    </View>;
         });
 

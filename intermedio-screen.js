@@ -22,7 +22,10 @@ export default class IntermedioScreen extends React.Component {
                     agregarAlimentoAMesa: params.agregarAlimentoAMesa,
                     removerAlimentoDeMesa: params.removerAlimentoDeMesa
                 })} title="Salon"/>
-                <Button onPress={() => navigate('Cocina', {mesas: params.mesas})} title="Cocina"/>
+                <Button onPress={() => navigate('Cocina', {
+                    mesas: params.mesas,
+                    removerAlimentoDeMesa: params.removerAlimentoDeMesa
+                })} title="Cocina"/>
             </View>
         );
     }
