@@ -35,20 +35,31 @@ export default class HomeScreen extends React.Component {
 
     _agregarMesa = () => {
         let mesas = this.state.mesas;
-        console.log('mas mesas', 'length', mesas.length);
         mesas.push({key: mesas.length + 1, orden: []});
         this.setState({ mesas: mesas });
     };
 
     _removerMesa = () => {
         let mesas = this.state.mesas;
-        console.log('menos mesas', 'length', mesas.length);
         mesas.pop();
         this.setState({ mesas: mesas });
     };
 
     _agregarAlimentoAMesa = (alimento: any, key: number) => {
-        console.log('HOME._agregarAlimentoAMesa', alimento, key);
+        let mesas = this.state.mesas;
+        let idx = mesas.findIndex(mesa => mesa.key === key);
+        mesas[idx].orden.push(alimento);
+        this.setState({mesas: mesas});
+    };
+
+    _removerAlimentoDeMesa = (alimento: any, key: number) => {
+        let mesas = this.state.mesas;
+        let mesaIdx = mesas.findIndex(mesa => mesa.key === key);
+        let mesa = mesas[mesaIdx];
+        let alimentoIdx = mesa.orden.findIndex(a => a.descripcion === alimento.descripcion);
+        mesa.orden.splice(alimentoIdx, 1);
+        mesas[mesaIdx] = mesa;
+        this.setState({mesas: mesas});
     };
 
     static navigationOptions = {
@@ -65,7 +76,8 @@ export default class HomeScreen extends React.Component {
             <Button title="Empezar"
                 onPress={() => navigate('Intermedio', {
                     mesas: this.state.mesas,
-                    agregarAlimentoAMesa: this._agregarAlimentoAMesa
+                    agregarAlimentoAMesa: this._agregarAlimentoAMesa,
+                    removerAlimentoDeMesa: this._removerAlimentoDeMesa
                 })} />
           </View>
         );

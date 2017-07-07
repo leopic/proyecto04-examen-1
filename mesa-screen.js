@@ -22,7 +22,13 @@ export default class MesaScreen extends React.Component {
             <View>
                 <Text>Numero de mesa: {params.mesa.key}</Text>
                 <Text>LISTA DE ALIMENTOS</Text>
-                <Button onPress={() => navigate('AgregarAlimento', { key: params.mesa.key, agregarAlimentoAMesa: params.agregarAlimentoAMesa })} title="Agregar Alimento"/>
+                <Button onPress={() => {
+                    params.removerAlimentoDeMesa(params.mesa.orden[0], params.mesa.key);
+                }} title="Remover Alimento"/>
+                <Button onPress={() => navigate('AgregarAlimento', {
+                    key: params.mesa.key,
+                    agregarAlimentoAMesa: params.agregarAlimentoAMesa
+                })} title="Agregar Alimento"/>
             </View>
         );
     }
