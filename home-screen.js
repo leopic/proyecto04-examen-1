@@ -16,7 +16,8 @@ export default class HomeScreen extends React.Component {
         return (
           <View>
             <Text>TODO: Mesas stepper</Text>
-            <Button onPress={() => navigate('Intermedio')} title="Empezar"/>
+            {/*<Button onPress={() => navigate('Intermedio')} title="Empezar"/>*/}
+            <Button onPress={() => navigate('Mesa', {id: 3})} title="Mesa #3"/>
           </View>
         );
   }
