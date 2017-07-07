@@ -4,6 +4,7 @@ import React from 'react';
 import {
     Text,
     Button,
+    TextInput,
     View
 } from 'react-native';
 
@@ -41,7 +42,11 @@ export default class AgregarAlimentoScreen extends React.Component {
                 {/* TODO: Dropdown, descripcion, stepper */}
                 <Text>Agregando a mesa: {params.key}</Text>
                 <Text>DROPDOWN: {this.state.tipo}</Text>
-                <Text>TEXTFIELD: {this.state.descripcion}</Text>
+                <TextInput
+                    style={{minHeight: 40, margin: 10, borderColor: 'gray', borderWidth: 1, fontSize: 14}} multiline={true}
+                    maxLength={80} onChangeText={(text) => this.setState({descripcion: text})}
+                    value={this.state.descripcion} autoCorrect={false} placeholder={'Descripcion'}
+                />
                 <Text>STEPPER: {this.state.cantidad}</Text>
                 <Button onPress={this._agregarAOrden} title="Agregar a la orden"/>
                 <Button onPress={() => goBack(null)} title="Cancelar"/>
