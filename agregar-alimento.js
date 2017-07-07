@@ -14,10 +14,12 @@ export default class AgregarAlimentoScreen extends React.Component {
     tiposDePlatos = ["Entrada", "Bebida", "Plato Principal", "Postre"];
     render() {
         const { goBack } = this.props.navigation;
+        const { params } = this.props.navigation.state;
 
         return (
             <View>
                 {/* TODO: Dropdown, descripcion, stepper */}
+                <Text>Agregando a mesa: {params.key}</Text>
                 <Text>DROPDOWN</Text>
                 <Text>TEXTFIELD</Text>
                 <Text>STEPPER</Text>

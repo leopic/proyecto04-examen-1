@@ -11,9 +11,12 @@ export default class CocinaScreen extends React.Component {
         title: 'Cocina',
     };
     render() {
+        const { params } = this.props.navigation.state;
+
         return (
             <View>
                 <Text>Pendientes:</Text>
+                <Text>Total de mesas: {params.mesas.length}</Text>
             </View>
         );
     }

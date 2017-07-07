@@ -3,6 +3,7 @@
 import React from 'react';
 import {
     Button,
+    Text,
     View
 } from 'react-native';
 
@@ -11,11 +12,13 @@ export default class IntermedioScreen extends React.Component {
         title: 'Seleccione',
     };
     render() {
+        const { params } = this.props.navigation.state;
         const { navigate } = this.props.navigation;
         return (
             <View>
-                <Button onPress={() => navigate('Salon')} title="Salon"/>
-                <Button onPress={() => navigate('Cocina')} title="Cocina"/>
+                <Text>Total de mesas: {params.mesas.length}</Text>
+                <Button onPress={() => navigate('Salon', {mesas: params.mesas})} title="Salon"/>
+                <Button onPress={() => navigate('Cocina', {mesas: params.mesas})} title="Cocina"/>
             </View>
         );
     }
