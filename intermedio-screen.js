@@ -17,7 +17,7 @@ export default class IntermedioScreen extends React.Component {
         return (
             <View>
                 <Text>Total de mesas: {params.mesas.length}</Text>
-                <Button onPress={() => navigate('Salon', {mesas: params.mesas})} title="Salon"/>
+                <Button onPress={() => navigate('Salon', {mesas: params.mesas, agregarAlimentoAMesa: params.agregarAlimentoAMesa})} title="Salon"/>
                 <Button onPress={() => navigate('Cocina', {mesas: params.mesas})} title="Cocina"/>
             </View>
         );

@@ -17,7 +17,7 @@ export default class SalonScreen extends React.Component {
         const { params } = this.props.navigation.state;
         const mesas = params.mesas;
         let mesasList = mesas.map(mesa => {
-            return <Button onPress={() => navigate('Mesa', { mesa: mesa })} title={'' + mesa.key} key={mesa.key}/>
+            return <Button onPress={() => navigate('Mesa', { mesa: mesa, agregarAlimentoAMesa: params.agregarAlimentoAMesa })} title={'' + mesa.key} key={mesa.key}/>
         });
 
         return (

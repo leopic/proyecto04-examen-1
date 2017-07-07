@@ -41,10 +41,14 @@ export default class HomeScreen extends React.Component {
     };
 
     _removerMesa = () => {
-        console.log('menos mesas');
         let mesas = this.state.mesas;
+        console.log('menos mesas', 'length', mesas.length);
         mesas.pop();
         this.setState({ mesas: mesas });
+    };
+
+    _agregarAlimentoAMesa = (alimento: any, key: number) => {
+        console.log('HOME._agregarAlimentoAMesa', alimento, key);
     };
 
     static navigationOptions = {
@@ -58,7 +62,11 @@ export default class HomeScreen extends React.Component {
             <Button onPress={this._removerMesa} title="-"/>
             <Text>{this.state.mesas.length}</Text>
             <Button onPress={this._agregarMesa} title="+"/>
-            <Button onPress={() => navigate('Intermedio', {mesas: this.state.mesas})} title="Empezar"/>
+            <Button title="Empezar"
+                onPress={() => navigate('Intermedio', {
+                    mesas: this.state.mesas,
+                    agregarAlimentoAMesa: this._agregarAlimentoAMesa
+                })} />
           </View>
         );
   }
