@@ -7,6 +7,8 @@ import {
     View
 } from 'react-native';
 
+import SimpleStepper from 'react-native-simple-stepper'
+
 export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -62,17 +64,44 @@ export default class HomeScreen extends React.Component {
         this.setState({mesas: mesas});
     };
 
+    _cambioEnNumeroDeMesas = nuevoConteo => {
+        const conteoActual = this.state.mesas.length;
+
+        if (nuevoConteo === conteoActual) {
+            return;
+        }
+
+        if (nuevoConteo > conteoActual) {
+            this._agregarMesa();
+        } else {
+            this._removerMesa();
+        }
+    };
+
     static navigationOptions = {
         title: 'RESTAURANTERO',
     };
+
     render() {
         const { navigate } = this.props.navigation;
+
         return (
           <View>
-            <Text>MESAS:</Text>
-            <Button onPress={this._removerMesa} title="-"/>
-            <Text>{this.state.mesas.length}</Text>
-            <Button onPress={this._agregarMesa} title="+"/>
+
+            <View style={{
+                alignItems: 'center',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                margin: 16
+            }}>
+                <SimpleStepper valueChanged={(nuevoConteo) => this._cambioEnNumeroDeMesas(nuevoConteo)}
+                               initialValue={this.state.mesas.length} maximumValue={100} />
+                <Text style={{
+                    flexGrow: 1,
+                    marginLeft: 10
+                }}>Mesas: {this.state.mesas.length}</Text>
+            </View>
+
             <Button title="Empezar"
                 onPress={() => navigate('Intermedio', {
                     mesas: this.state.mesas,
