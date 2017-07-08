@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {
-    Button,
+    TouchableOpacity,
     Text,
     View
 } from 'react-native';
@@ -16,31 +16,35 @@ export default class HomeScreen extends React.Component {
         let mesas = [
             {key: 1, orden: []},
             {key: 2, orden: []},
-            {key: 3, orden: [
+            {
+                key: 3, orden: [
                 {tipo: "Plato principal", cantidad: 3, descripcion: "Pescado a la plancha"},
                 {tipo: "Postre", cantidad: 2, descripcion: "Tres leches"},
                 {tipo: "Plato principal", cantidad: 1, descripcion: "Cordeon Blue"},
                 {tipo: "Bebida", cantidad: 3, descripcion: "Margarita"},
-            ]},
-            {key: 4, orden: [
+            ]
+            },
+            {
+                key: 4, orden: [
                 {tipo: "Postre", cantidad: 2, descripcion: "Pie limon"},
-            ]},
+            ]
+            },
             {key: 5, orden: []},
         ];
 
-        this.state = { mesas: mesas };
+        this.state = {mesas: mesas};
     }
 
     _agregarMesa = () => {
         let mesas = this.state.mesas;
         mesas.push({key: mesas.length + 1, orden: []});
-        this.setState({ mesas: mesas });
+        this.setState({mesas: mesas});
     };
 
     _removerMesa = () => {
         let mesas = this.state.mesas;
         mesas.pop();
-        this.setState({ mesas: mesas });
+        this.setState({mesas: mesas});
     };
 
     _agregarAlimentoAMesa = (alimento: any, key: number) => {
@@ -79,32 +83,47 @@ export default class HomeScreen extends React.Component {
     };
 
     render() {
-        const { navigate } = this.props.navigation;
+        const {navigate} = this.props.navigation;
 
         return (
-          <View>
-
             <View style={{
-                alignItems: 'center',
-                flexDirection: 'row',
+                flexDirection: 'column',
+                height: '100%',
                 justifyContent: 'space-between',
-                margin: 16
             }}>
-                <SimpleStepper valueChanged={(nuevoConteo) => this._cambioEnNumeroDeMesas(nuevoConteo)}
-                               initialValue={this.state.mesas.length} maximumValue={100} />
-                <Text style={{
-                    flexGrow: 1,
-                    marginLeft: 10
-                }}>Mesas: {this.state.mesas.length}</Text>
-            </View>
+                <View style={{
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    height: 44,
+                    justifyContent: 'space-between',
+                    margin: 16,
+                }}>
+                    <SimpleStepper valueChanged={(nuevoConteo) => this._cambioEnNumeroDeMesas(nuevoConteo)}
+                                   initialValue={this.state.mesas.length} maximumValue={100}/>
+                    <Text style={{
+                        flexGrow: 1,
+                        marginLeft: 10,
+                    }}>Mesas: {this.state.mesas.length}</Text>
+                </View>
 
-            <Button title="Empezar"
-                onPress={() => navigate('Intermedio', {
-                    mesas: this.state.mesas,
-                    agregarAlimentoAMesa: this._agregarAlimentoAMesa,
-                    removerAlimentoDeMesa: this._removerAlimentoDeMesa
-                })} />
-          </View>
+                <View>
+                    <TouchableOpacity onPress={() => navigate('Intermedio', {
+                        mesas: this.state.mesas,
+                        agregarAlimentoAMesa: this._agregarAlimentoAMesa,
+                        removerAlimentoDeMesa: this._removerAlimentoDeMesa
+                    })}>
+                        <Text style={{
+                            backgroundColor: 'rgb(0, 0, 255)',
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            height: 44,
+                            lineHeight: 44,
+                            margin: 16,
+                            textAlign: 'center',
+                        }}>EMPEZAR</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
         );
-  }
+    }
 }
