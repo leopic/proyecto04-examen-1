@@ -3,7 +3,6 @@
 import React from 'react';
 import {
     Text,
-    Button,
     ListView,
     TouchableOpacity,
     View
@@ -35,10 +34,10 @@ export default class MesaScreen extends React.Component {
 
         let header = () => {
             return <View style={{
-                padding: 16,
-                borderBottomWidth: 2,
+                backgroundColor: '#fff',
                 borderBottomColor: '#000',
-                backgroundColor: '#fff'
+                borderBottomWidth: 2,
+                padding: 16,
             }}><Text style={{fontSize: 16, fontWeight: 'bold'}}>ORDEN</Text>
             </View>
         };
@@ -47,14 +46,14 @@ export default class MesaScreen extends React.Component {
             let tipo = (entrada.tipo[0] + entrada.tipo[1]).toUpperCase();
 
             return <View style={{
+                alignItems: 'center',
+                borderBottomColor: '#999',
+                borderBottomWidth: 1,
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between',
                 padding: 16,
                 paddingTop: 8,
-                borderBottomWidth: 1,
-                borderBottomColor: '#999',
-                alignItems: 'center',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap'
             }}>
                 <Text style={{
                     borderColor: '#666',
@@ -105,8 +104,8 @@ export default class MesaScreen extends React.Component {
                         color: '#fff',
                         fontWeight: 'bold',
                         height: 44,
-                        margin: 16,
                         lineHeight: 44,
+                        margin: 16,
                         textAlign: 'center',
                     }}>AGREGAR A ORDEN</Text>
                 </TouchableOpacity>
