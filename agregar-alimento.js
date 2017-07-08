@@ -63,10 +63,6 @@ export default class AgregarAlimentoScreen extends React.Component {
 
     render() {
         const { goBack } = this.props.navigation;
-        const { params } = this.props.navigation.state;
-
-        console.clear();
-        console.log(this.state.tipos);
 
         let listaDeTiposDeComida = this.state.tipos.map((tipo, idx): Picker.Item[] => {
             return <Picker.Item key={idx} value={tipo} label={tipo} />
