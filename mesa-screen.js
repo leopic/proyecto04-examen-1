@@ -74,15 +74,15 @@ export default class MesaScreen extends React.Component {
                 <TouchableOpacity onPress={() =>{
                     this._removerAlimentoDeMesaProxy(entrada, params.mesa.key);
                 }}>
-                <Text style={{
-                        backgroundColor: 'rgb(0, 0, 255)',
-                        color: '#fff',
-                        fontWeight: 'bold',
-                        height: 44,
-                        lineHeight: 44,
-                        width: 44,
-                        textAlign: 'center',
-                    }}>X</Text>
+                    <Text style={{
+                            backgroundColor: 'rgb(0, 0, 255)',
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            height: 44,
+                            lineHeight: 44,
+                            width: 44,
+                            textAlign: 'center',
+                        }}>X</Text>
                 </TouchableOpacity>
             </View>
         };
@@ -105,6 +105,7 @@ export default class MesaScreen extends React.Component {
                         color: '#fff',
                         fontWeight: 'bold',
                         height: 44,
+                        margin: 16,
                         lineHeight: 44,
                         textAlign: 'center',
                     }}>AGREGAR A ORDEN</Text>
