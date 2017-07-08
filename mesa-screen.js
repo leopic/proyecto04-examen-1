@@ -84,8 +84,6 @@ export default class MesaScreen extends React.Component {
                         textAlign: 'center',
                     }}>X</Text>
                 </TouchableOpacity>
-
-
             </View>
         };
 

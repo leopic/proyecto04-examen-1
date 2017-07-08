@@ -7,7 +7,7 @@ import {
     View
 } from 'react-native';
 
-import SimpleStepper from 'react-native-simple-stepper'
+import SimpleStepper from 'react-native-simple-stepper';
 
 export default class HomeScreen extends React.Component {
     constructor(props) {
@@ -27,12 +27,8 @@ export default class HomeScreen extends React.Component {
             ]},
             {key: 5, orden: []},
         ];
-        const tiposDePlatos = ["Entrada", "Bebida", "Plato Principal", "Postre"];
 
-        this.state = {
-            mesas: mesas,
-            tiposDePlatos: tiposDePlatos
-        };
+        this.state = { mesas: mesas };
     }
 
     _agregarMesa = () => {
