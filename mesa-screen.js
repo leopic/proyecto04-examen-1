@@ -5,6 +5,7 @@ import {
     Text,
     Button,
     ListView,
+    TouchableOpacity,
     View
 } from 'react-native';
 
@@ -33,11 +34,13 @@ export default class MesaScreen extends React.Component {
         let dataSource = ds.cloneWithRows(params.mesa.orden);
 
         let header = () => {
-            return <Text style={{
+            return <View style={{
                 padding: 16,
                 borderBottomWidth: 2,
-                borderBottomColor: '#000'
-            }}>ORDEN</Text>
+                borderBottomColor: '#000',
+                backgroundColor: '#fff'
+            }}><Text style={{fontSize: 16, fontWeight: 'bold'}}>ORDEN</Text>
+            </View>
         };
 
         let row = (entrada) => {
@@ -56,41 +59,58 @@ export default class MesaScreen extends React.Component {
                 <Text style={{
                     borderColor: '#666',
                     borderWidth: 1,
-                    height: 24,
-                    lineHeight: 24,
+                    height: 44,
+                    lineHeight: 44,
                     marginRight: 8,
                     textAlign: 'center',
-                    width: 24,
+                    width: 44,
+                    fontSize: 15,
                 }}>{tipo}</Text>
-
                 <Text style={{
-                    borderColor: '#333',
-                    borderWidth: 1,
-                    height: 24,
-                    lineHeight: 24,
-                    marginRight: 8,
-                    textAlign: 'center',
-                    width: 24
-                }}>{entrada.cantidad}</Text>
-                <Text style={{flexGrow: 2}}>{entrada.descripcion}</Text>
-                <Button onPress={() => {
+                    flexGrow: 2,
+                    fontSize: 16
+                }}>{entrada.cantidad} - {entrada.descripcion}</Text>
+
+                <TouchableOpacity onPress={() =>{
                     this._removerAlimentoDeMesaProxy(entrada, params.mesa.key);
-                }} title="X" style={{width: 20}}/>
+                }}>
+                <Text style={{
+                        backgroundColor: 'rgb(0, 0, 255)',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                        height: 44,
+                        lineHeight: 44,
+                        width: 44,
+                        textAlign: 'center',
+                    }}>X</Text>
+                </TouchableOpacity>
+
+
             </View>
         };
 
         return (
-            <View>
+            <View style={{
+                height: '100%'
+            }}>
                 <ListView enableEmptySections={true}
                           dataSource={dataSource}
                           renderSectionHeader={header}
                           renderRow={row}/>
 
-                <Button title="Agregar Alimento"
-                        onPress={() => navigate('AgregarAlimento', {
-                            key: params.mesa.key,
-                            agregarAlimentoAMesa: this._agregarAlimentoAMesaProxy
-                        })}/>
+                <TouchableOpacity onPress={() => navigate('AgregarAlimento', {
+                    key: params.mesa.key,
+                    agregarAlimentoAMesa: this._agregarAlimentoAMesaProxy
+                })}>
+                    <Text style={{
+                        backgroundColor: 'rgb(0, 0, 255)',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                        height: 44,
+                        lineHeight: 44,
+                        textAlign: 'center',
+                    }}>AGREGAR A ORDEN</Text>
+                </TouchableOpacity>
             </View>
         );
     }
